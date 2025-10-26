@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite thread-count="1" parallel="tests" name="SmokeSuite">
-     <parameter name="browser" value="chrome"/>
-    <test thread-count="1" parallel="classes" name="SmokeTest"> 
+    <test thread-count="1" parallel="classes" name="SmokeTest">
+        <parameter name="browser" value="chrome"/>
         <classes>
-            <class name="com.Bai19_ICEHRM_LoginTest">
+            <class name="com.Bai18_TabTest">
                 <methods>
-                    <include name="LoginTest"/>
+                    <include name="tabTest"/>
                 </methods>
             </class>
         </classes>

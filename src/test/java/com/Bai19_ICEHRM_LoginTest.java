@@ -67,5 +67,4 @@ public class Bai19_ICEHRM_LoginTest extends BasicTest {
         }
         
     }
-
 }

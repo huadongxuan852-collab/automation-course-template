@@ -28,7 +28,6 @@ public abstract class BasicTest {
     // private String driverPath;
 
     @BeforeMethod
-    @Parameters({"browser"})
     public void preCondition() {
         // Chromedriver path
         // driverPath = "src/main/resources/WebDrivers/chromedriver.exe";
@@ -42,24 +41,11 @@ public abstract class BasicTest {
         if(browser.equalsIgnoreCase("chrome")) {
         WebDriverManager.chromedriver().setup();
         driver = new ChromeDriver();
-
-        } else if(browser.equalsIgnoreCase("edge")) {
-        WebDriverManager.edgedriver().setup();
-        driver = new EdgeDriver();
-        
-        } else if(browser.equalsIgnoreCase("firefox")) {
-        WebDriverManager.firefoxdriver().setup();
-        driver = new FirefoxDriver();
-            
-
-        } else {
-            System.out.println("Browser is not supported: " + browser);
-            throw new RuntimeException("Invalid browser name in XML");
-        }
-
+        // Maximize the browser
         driver.manage().window().maximize();
         // driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
          wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        }
         
     }
 

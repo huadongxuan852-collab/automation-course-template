@@ -2,9 +2,10 @@ package com;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
-import org.openqa.selenium.By;
 import com.utils.BasicTest;
 import com.utils.Utils;
 
@@ -12,61 +13,70 @@ import com.utils.Utils;
 public class Bai16_LoginTest extends BasicTest {
 
 
-    @Test(priority = 1)
-    public void loginTestSuccess() throws Exception {
+    @DataProvider(name="SuccessLogin")
+        public Object[][] SuccessLogin() {
+        return new Object[][]{
+            {"huadongxuan852@gmail.com", "xuanice123"},
+
+              };
+        }
+
+         @DataProvider(name="FailedLogin")
+        public Object[][] FailedLogin() {
+        return new Object[][]{
+             {"huadongxuan852@gmail.com", ""}
+              };
+        }
+
+    @Test(dataProvider = "SuccessLogin", priority = 1)
+    public void loginTestSuccess(String emailInput, String passWord) throws Exception {
         // Mở trang đăng nhập
         String url = "https://bantheme.xyz/hathanhauto/tai-khoan/";
         driver.get(url);
         Assert.assertEquals(driver.getCurrentUrl(), url);
 
         //Nhập email
-        WebElement emailInput = driver.findElement(By.xpath("//*[@id='username']"));
-        emailInput.sendKeys("huadongxuan852@gmail.com");
-
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='username']"))).sendKeys(emailInput);
         //Nhập password
-         WebElement passwordInput = driver.findElement(By.xpath("//*[@id='password']"));
-         passwordInput.sendKeys("xuanice123");
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='password']"))).sendKeys(passWord);
 
          //Click nút đăng nhập
-        WebElement loginBtn = driver.findElement(By.xpath("//button[@name='login']"));
+        WebElement loginBtn = wait.until(ExpectedConditions.elementToBeClickable((By.xpath("//button[@name='login']"))));
         loginBtn.click();
-        Utils.hardWait(3000);
-
-        // Kiểm tra đăng nhập thành công
-        boolean isLoginDisplay  = isElementDisplayed(loginBtn);
-        Assert.assertFalse(isLoginDisplay);
-        Utils.hardWait(3000);
-
-    }
 
 
-   @Test(priority = 2)
-    public void loginTestFailed() throws Exception{
+         //Chờ URL đổi sang trang tài khoản 
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//p[contains(text(), 'Xin chào')]")));
+
+        // Kiểm đăng nhập thành công (nút login biến mất)
+        wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//button[@name='login']")));
+        System.out.println("Đăng nhập thành công");
+        }
+
+
+   @Test(dataProvider = "FailedLogin", priority = 2)
+    public void loginTestFailed(String emailInput, String passWord) throws Exception{
          // Mở trang đăng nhập
         String url ="https://bantheme.xyz/hathanhauto/tai-khoan/";
         driver.get(url);
         Assert.assertEquals(driver.getCurrentUrl(), url);
         
-        //Nhập email
-        WebElement emailInput = driver.findElement(By.xpath("//*[@id='username']"));
-        emailInput.sendKeys("huadongxuan852@gmail.com");
-
-        //Bỏ trống password
-        WebElement passwordInput = driver.findElement(By.xpath("//*[@id='password']"));
-        passwordInput.click();
+       //Nhập email
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='username']"))).sendKeys(emailInput);
+        //Nhập password
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='password']"))).sendKeys(passWord);
         
-        //Click đăng nhập
-        WebElement loginBtn = driver.findElement(By.xpath("//button[@name='login']"));
+         //Click nút đăng nhập
+        WebElement loginBtn = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//button[@name='login']")));
         loginBtn.click();
-        Utils.hardWait(3000);
 
         // Kiểm tra lỗi
-         WebElement errorrMessageText = driver.findElement(By.xpath("//ul[@class='woocommerce-error']/li"));
+         WebElement errorrMessageText = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//ul[@class='woocommerce-error']/li")));
         Assert.assertTrue(errorrMessageText.isDisplayed());
 
     }
 
-    public boolean isElementDisplayed(WebElement element){
+    /*public boolean isElementDisplayed(WebElement element){
 
         try {
             return element.isDisplayed();
@@ -75,7 +85,7 @@ public class Bai16_LoginTest extends BasicTest {
             return false;
         }
         
-    }
+    }*/
 
 }
 

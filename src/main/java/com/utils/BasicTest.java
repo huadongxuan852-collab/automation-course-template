@@ -27,9 +27,10 @@ import org.openqa.selenium.edge.EdgeDriver;
 public abstract class BasicTest {
     
     public static final Logger logger = LogManager.getLogger();
-    protected static WebDriver driver;
-    public static WebDriverWait wait;
-     protected Actions actions;
+    protected WebDriver driver;
+    protected WebDriverWait wait;
+    protected Actions actions;
+
     // private String driverPath;
 
     @BeforeMethod
@@ -62,7 +63,8 @@ public abstract class BasicTest {
         driver.quit();
     }
 
- //chờ element hiển thị
+ 
+//chờ element hiển thị
     protected WebElement waitElementVisible(By by) {
        return wait.until(ExpectedConditions.visibilityOfElementLocated(by));
     }
@@ -78,4 +80,39 @@ public abstract class BasicTest {
        return waitElementClickable(By.xpath(xpathLocator)); 
       }
 
+  // 1. Chờ element hiển thị (dùng WebElement)
+    protected WebElement waitForElementVisible(WebElement element) {
+        return wait.until(ExpectedConditions.visibilityOf(element));
     }
+    
+    // 2. Chờ element hiển thị (dùng By Locator)
+    protected WebElement waitForElementVisible(By by) {
+        return wait.until(ExpectedConditions.visibilityOfElementLocated(by));
+    }
+
+    // 3. Chờ element có thể click (dùng WebElement)
+    protected WebElement waitForElementClickable(WebElement element) {
+        return wait.until(ExpectedConditions.elementToBeClickable(element));
+    }
+
+    // 4. 🔥 SỬA: Chờ element có thể click (dùng By Locator)
+    protected WebElement waitForElementClickable(By by) {
+        return wait.until(ExpectedConditions.elementToBeClickable(by));
+    }
+    
+    // 5. 🔥 SỬA: Chờ element có thể click (dùng String XPath)
+    protected WebElement waitForElementClickable(String xpathLocator) {
+        // Gọi lại hàm chờ By
+        return waitForElementClickable(By.xpath(xpathLocator)); 
+    }
+
+    // 6. Dùng cho các element @FindBy bị stale sau khi tải lại trang hoặc AJAX
+    protected WebElement waitForElementRefreshed(WebElement element) {
+        return wait.until(ExpectedConditions.refreshed(ExpectedConditions.visibilityOf(element)));
+    }
+    
+    // 7. Dùng cho các By Locator bị stale sau khi tải lại trang
+    protected WebElement waitForElementRefreshed(By by) {
+        return wait.until(ExpectedConditions.refreshed(ExpectedConditions.visibilityOfElementLocated(by)));
+    }
+}

@@ -29,7 +29,6 @@ public class CartPage extends BasicTest {
     }
     
     // --- Utility Methods ---
-    
     /**
      * Lấy số lượng sản phẩm hiển thị trên badge giỏ hàng
      * Nếu không tìm thấy badge, trả về 0

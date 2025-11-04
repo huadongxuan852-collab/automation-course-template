@@ -39,8 +39,10 @@ public class LoginPage extends BasicTest {
     public LoginPage login(String userName, String password) {
         waitForElementVisible(usernameInput).clear();
         usernameInput.sendKeys(userName);
+
         waitForElementVisible(passwordInput).clear();
         passwordInput.sendKeys(password);
+        
         waitForElementClickable(loginButton).click();
         return this;
     }

@@ -46,6 +46,7 @@ public class SearchProductPage extends BasicTest {
     public SearchProductPage selectOptionByIndex(int index) {
         WebElement dropdown = waitForElementRefreshed(dropdownOriginLocator);
         wait.until(ExpectedConditions.numberOfElementsToBeMoreThan(By.xpath("//select[@id='pa_xuat-xu']/option"), 1));
+        
         Select select = new Select(dropdown);
         select.selectByIndex(index);
         waitForElementClickable(addToCartButton);

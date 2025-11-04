@@ -36,5 +36,6 @@ public class Bai23_PageFactoryShoppingCart extends BasicTest {
         searchPage.addProductToCart();       
         cartPage.verifyBadgeAfterAdd();
         cartPage.deleteProductFromCart(); 
+        
     }
 }

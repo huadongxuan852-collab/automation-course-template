@@ -27,7 +27,7 @@ import org.openqa.selenium.edge.EdgeDriver;
 public class  BasicTest {
     
     public static final Logger logger = LogManager.getLogger();
-    protected WebDriver driver;
+    protected static WebDriver driver;
     protected WebDriverWait wait;
     protected Actions actions;
 

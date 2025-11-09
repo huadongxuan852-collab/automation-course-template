@@ -9,7 +9,7 @@ import org.testng.Assert;
 
 
 public class LoginPage extends BasicTest {
-
+    protected WebDriver driver;
 
     @FindBy(id = "username")
     private WebElement usernameInput;

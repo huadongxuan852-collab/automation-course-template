@@ -11,6 +11,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class SearchProductPage extends BasicTest {
+    protected WebDriver driver;
 
     @FindBy(xpath = "(//input[@id='s'])[1]")
     private WebElement searchInput;

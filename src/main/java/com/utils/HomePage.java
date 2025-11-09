@@ -9,6 +9,7 @@ import org.openqa.selenium.support.PageFactory;
 
 
 public class HomePage extends BasicTest {
+    protected WebDriver driver;
 
 
     public HomePage(WebDriver driver) {

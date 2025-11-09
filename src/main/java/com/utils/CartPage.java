@@ -12,6 +12,7 @@ import org.testng.Assert;
 import java.time.Duration;
 
 public class CartPage extends BasicTest { 
+  protected WebDriver driver;
 
     @FindBy(xpath = "//div[contains(@class,'link-cart')]/a/b")
     private WebElement badgeCartCount; 

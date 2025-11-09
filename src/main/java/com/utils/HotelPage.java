@@ -13,9 +13,8 @@ import java.time.Duration;
 
 
 public class HotelPage extends BasicTest {
+        //protected WebDriver driver;
 
-    WebDriver driver;
-    WebDriverWait wait;
 
 
     By hotelList = By.xpath("//span[contains(@class,'pdv__hotel--name')]");
@@ -23,10 +22,9 @@ public class HotelPage extends BasicTest {
 
     public HotelPage(WebDriver driver) {
         this.driver = driver;
-        this.wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+        this.wait = new WebDriverWait(driver, Duration.ofSeconds(30)); 
         PageFactory.initElements(driver, this);
     }
-
 
     public void selectHotel() {
         // Chờ danh sách hotel hiển thị

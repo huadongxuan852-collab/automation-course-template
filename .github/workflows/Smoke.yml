@@ -2,10 +2,15 @@ name: Smoke Test
 
 on:
   workflow_dispatch:
-  push:
-    branches:
-      - main
-      - dev
+    inputs:
+      test_suite:
+        description: "test suite name"
+        required: true
+        default: "Smoke"
+  # push:
+  #   branches:
+  #     - main
+  #     - dev
 
 jobs:
   smoke-test:

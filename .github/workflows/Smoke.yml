@@ -28,7 +28,6 @@ jobs:
         run: |
           sudo apt-get update
           sudo apt-get install -y google-chrome-stable || sudo apt-get install -y chromium-browser
-          sudo apt-get install icedtea6-plugin
 
 
       - name: Run Smoke Tests

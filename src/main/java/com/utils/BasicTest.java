@@ -52,7 +52,9 @@ public class  BasicTest {
            options.addArguments("--window-size=1920,1080");
 
         }
-        driver = new ChromeDriver();
+
+        driver = new ChromeDriver(options);
+
         // Maximize the browser
         driver.manage().window().maximize();
         // driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);

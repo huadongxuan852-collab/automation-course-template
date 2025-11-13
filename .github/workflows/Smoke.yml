@@ -37,8 +37,7 @@ jobs:
 
       - name: Run Smoke Tests
         run: |
-          mvn clean test -Dsuite=Smoke
-          
+          mvn clean test -Dsuite=${{ github.event.inputs.test_suite }}          
       - name: Upload Smoke Test Results
         uses: actions/upload-artifact@v4
         with:

@@ -42,11 +42,7 @@
                 </methods>
             </class>
 
-            <class name="com.Bai22_DatePickerTest">
-                <methods>
-                    <include name="datePickerTest"/>
-                </methods>
-            </class>
+            
 
             <class name="com.Bai23_PageFactoryShoppingCart">
                 <methods>

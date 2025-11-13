@@ -37,7 +37,6 @@ public class  BasicTest {
     public void preCondition() {
         // Chromedriver path
         // driverPath = "src/main/resources/WebDrivers/chromedriver.exe";
-        // ChromeOptions options = new ChromeOptions();
         // System.setProperty("webdriver.chrome.driver", driverPath);
         // driver = new ChromeDriver(options);
        
@@ -46,6 +45,13 @@ public class  BasicTest {
 
         if(browser.equalsIgnoreCase("chrome")) {
         WebDriverManager.chromedriver().setup();
+         ChromeOptions options = new ChromeOptions();
+        //headless mode
+        if(Constants.headless){
+           options.addArguments("--headless");
+           options.addArguments("--window-size=1920,1080");
+
+        }
         driver = new ChromeDriver();
         // Maximize the browser
         driver.manage().window().maximize();

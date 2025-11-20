@@ -53,12 +53,12 @@ public class  BasicTest {
 
         }
 
-        driver = new ChromeDriver(options);
+        driver = new ChromeDriver();
 
         // Maximize the browser
         driver.manage().window().maximize();
         // driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-         wait = new WebDriverWait(driver, Duration.ofSeconds(60));
+         wait = new WebDriverWait(driver, Duration.ofSeconds(120));
         actions = new Actions(driver);
         }
         

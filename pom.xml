@@ -15,7 +15,7 @@
         <maven.compiler.plugin.version>3.5.1</maven.compiler.plugin.version>
         <maven.surefire.plugin.version>2.19.1</maven.surefire.plugin.version>
 
-        <!-- ✅ Selenium 4 -->
+        <!-- Selenium 4 -->
         <selenium.version>4.24.0</selenium.version>
 
         <testng.version>7.1.0</testng.version>
@@ -29,6 +29,9 @@
         <allure.environment.writer.version>1.0.0</allure.environment.writer.version>
         <javafaker.version>1.0.2</javafaker.version>
         <aspectj.version>1.9.2</aspectj.version>
+
+        <!-- Thêm version Cucumber -->
+        <!-- <cucumber.version>7.15.0</cucumber.version> -->
     </properties>
 
     <build>
@@ -72,10 +75,9 @@
                     <argLine>
                         -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"
                     </argLine>
-                    <suiteXmlFiles>
+                    <!--suiteXmlFiles>
                         <suiteXmlFile>src/test/resources/suites/Smoke.xml</suiteXmlFile>
-
-                    </suiteXmlFiles>
+                    </suiteXmlFiles-->
                 </configuration>
                 <dependencies>
                     <dependency>
@@ -89,7 +91,8 @@
     </build>
 
     <dependencies>
-        <!-- ✅ Selenium 4 -->
+
+        <!-- Selenium 4 -->
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-java</artifactId>
@@ -108,6 +111,7 @@
             <version>${testng.version}</version>
         </dependency>
 
+        <!-- ExtentReports -->
         <dependency>
             <groupId>com.aventstack</groupId>
             <artifactId>extentreports</artifactId>
@@ -132,6 +136,7 @@
             <version>${webdrivermanager.version}</version>
         </dependency>
 
+        <!-- Log4j -->
         <dependency>
             <groupId>org.apache.logging.log4j</groupId>
             <artifactId>log4j-core</artifactId>
@@ -148,6 +153,7 @@
             <version>${log4j.version}</version>
         </dependency>
 
+        <!-- Allure -->
         <dependency>
             <groupId>io.qameta.allure</groupId>
             <artifactId>allure-testng</artifactId>
@@ -164,12 +170,14 @@
             <version>${allure.environment.writer.version}</version>
         </dependency>
 
+        <!-- Java Faker -->
         <dependency>
             <groupId>com.github.javafaker</groupId>
             <artifactId>javafaker</artifactId>
             <version>${javafaker.version}</version>
         </dependency>
 
+        <!-- Apache POI -->
         <dependency>
             <groupId>org.apache.poi</groupId>
             <artifactId>poi</artifactId>
@@ -191,6 +199,7 @@
             <version>5.2.2</version>
         </dependency>
 
+        <!-- Applitools -->
         <dependency>
             <groupId>com.applitools</groupId>
             <artifactId>eyes-selenium-java3</artifactId>
@@ -198,11 +207,44 @@
             <scope>test</scope>
         </dependency>
 
+       <!-- Cucumber Java -->
         <dependency>
-            <groupId>org.junit.jupiter</groupId>
-            <artifactId>junit-jupiter</artifactId>
-            <version>5.8.2</version>
-            <scope>test</scope>
+         <groupId>io.cucumber</groupId>
+         <artifactId>cucumber-java</artifactId>
+         <version>7.31.0</version>
         </dependency>
+
+<!-- Cucumber + JUnit 5 engine -->
+        <dependency>
+         <groupId>io.cucumber</groupId>
+         <artifactId>cucumber-junit-platform-engine</artifactId>
+         <version>7.31.0</version>
+         <scope>test</scope>
+        </dependency>
+
+<!-- JUnit 5 -->
+        <dependency>
+         <groupId>org.junit.jupiter</groupId>
+         <artifactId>junit-jupiter</artifactId>
+         <version>5.10.0</version>
+         <scope>test</scope>
+        </dependency>
+    <dependency>
+         <groupId>org.junit.platform</groupId>
+         <artifactId>junit-platform-suite-api</artifactId>
+         <version>1.10.0</version>
+         <scope>test</scope>
+    </dependency>
+
+<!-- JUnit Platform Launcher -->
+    <dependency>
+         <groupId>org.junit.platform</groupId>
+         <artifactId>junit-platform-launcher</artifactId>
+         <version>1.10.0</version>
+         <scope>test</scope>
+    </dependency>
+       
+
     </dependencies>
+
 </project>
